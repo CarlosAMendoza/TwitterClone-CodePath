@@ -18,7 +18,7 @@
 /* Begin PBXFileReference section */
 		37D29B8521F90E3400984A88 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4CEB8A6500C9DFD9CEF16FBF /* Pods-Twitter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Twitter.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Twitter/Pods-Twitter.debug.xcconfig"; sourceTree = "<group>"; };
-		6EBCF52221DF07FC00451C03 /* Twitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Twitter.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6EBCF52221DF07FC00451C03 /* TwitterCloneClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TwitterCloneClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EBCF52521DF07FC00451C03 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6EBCF52A21DF07FC00451C03 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6EBCF53121DF07FE00451C03 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -62,7 +62,7 @@
 		6EBCF52321DF07FC00451C03 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6EBCF52221DF07FC00451C03 /* Twitter.app */,
+				6EBCF52221DF07FC00451C03 /* TwitterCloneClone.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -91,9 +91,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		6EBCF52121DF07FC00451C03 /* Twitter */ = {
+		6EBCF52121DF07FC00451C03 /* TwitterClone */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6EBCF53421DF07FE00451C03 /* Build configuration list for PBXNativeTarget "Twitter" */;
+			buildConfigurationList = 6EBCF53421DF07FE00451C03 /* Build configuration list for PBXNativeTarget "TwitterClone" */;
 			buildPhases = (
 				A2934386C8F08B152613D9CE /* [CP] Check Pods Manifest.lock */,
 				6EBCF51E21DF07FC00451C03 /* Sources */,
@@ -105,9 +105,9 @@
 			);
 			dependencies = (
 			);
-			name = Twitter;
+			name = TwitterClone;
 			productName = Twitter;
-			productReference = 6EBCF52221DF07FC00451C03 /* Twitter.app */;
+			productReference = 6EBCF52221DF07FC00451C03 /* TwitterCloneClone.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -126,7 +126,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 6EBCF51D21DF07FC00451C03 /* Build configuration list for PBXProject "Twitter" */;
+			buildConfigurationList = 6EBCF51D21DF07FC00451C03 /* Build configuration list for PBXProject "TwitterClone" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -139,7 +139,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				6EBCF52121DF07FC00451C03 /* Twitter */,
+				6EBCF52121DF07FC00451C03 /* TwitterClone */,
 			);
 		};
 /* End PBXProject section */
@@ -348,8 +348,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.codepath.TwitterTestApp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = dev.carlosmendoza.TwitterClone;
+				PRODUCT_NAME = TwitterCloneClone;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -368,8 +368,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.codepath.TwitterTestApp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = dev.carlosmendoza.TwitterClone;
+				PRODUCT_NAME = TwitterCloneClone;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -378,7 +378,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		6EBCF51D21DF07FC00451C03 /* Build configuration list for PBXProject "Twitter" */ = {
+		6EBCF51D21DF07FC00451C03 /* Build configuration list for PBXProject "TwitterClone" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6EBCF53221DF07FE00451C03 /* Debug */,
@@ -387,7 +387,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6EBCF53421DF07FE00451C03 /* Build configuration list for PBXNativeTarget "Twitter" */ = {
+		6EBCF53421DF07FE00451C03 /* Build configuration list for PBXNativeTarget "TwitterClone" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6EBCF53521DF07FE00451C03 /* Debug */,

@@ -21,10 +21,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         
-        let login = LoginViewController()
-        let navigationController = UINavigationController(rootViewController: login)
-        
-        window?.rootViewController = navigationController
+        if UserDefaults.standard.bool(forKey: "userLoggedIn") {
+            let home = HomeTableViewController()
+            let navigationController = UINavigationController(rootViewController: home)
+            window?.rootViewController = navigationController
+        } else {
+            let login = LoginViewController()
+            window?.rootViewController = login
+        }
         
         return true
     }

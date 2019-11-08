@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HomeTableViewController: UITableViewController {
+class HomeTableViewController: UITableViewController, UIAdaptivePresentationControllerDelegate{
     
     let tweetCellIndentifier = "TweetCell"
     
@@ -19,6 +19,12 @@ class HomeTableViewController: UITableViewController {
         logoutButton.title = "Logout"
         return logoutButton
     }()
+    
+    let tweetButton: UIBarButtonItem = {
+        let tweetButton = UIBarButtonItem()
+        tweetButton.title = "Tweet"
+        return tweetButton
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +33,11 @@ class HomeTableViewController: UITableViewController {
         self.navigationItem.leftBarButtonItem = logoutButton
         logoutButton.action = #selector(logout)
         logoutButton.target = self
+        
+        self.navigationItem.rightBarButtonItem = tweetButton
+        tweetButton.action = #selector(compose)
+        tweetButton.target = self
+        
         
 //        self.navigationController?.navigationBar.backgroundColor = UIColor(red: 0, green: 132/255, blue: 180/255, alpha: 1)
         self.navigationController?.navigationBar.isTranslucent = false
@@ -62,12 +73,17 @@ class HomeTableViewController: UITableViewController {
         
         
     }
-
-    // MARK: - Table view data source
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return tweet.count
+    
+    // MARK: - BarButton Functions
+    
+    @objc private func compose() {
+        let composeViewController = UINavigationController(rootViewController: ComposeViewController())
+        composeViewController.presentationController?.delegate = self
+        present(composeViewController, animated: true, completion: nil)
+    }
+    
+    func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+        loadTweet()
     }
     
     @objc private func logout() {
@@ -82,6 +98,13 @@ class HomeTableViewController: UITableViewController {
                               animations: nil,
                               completion: nil)
         }
+    }
+    
+    // MARK: - Table view data source
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of rows
+        return tweet.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -183,7 +206,7 @@ class TweetCell: UITableViewCell {
         
     }
     
-    func setupUI(){
+    private func setupUI(){
         contentView.addSubview(profilePic)
         contentView.addSubview(author)
         contentView.addSubview(tweetText)

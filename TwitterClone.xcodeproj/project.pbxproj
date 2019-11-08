@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0729D8A6237573DC00800EC2 /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0729D8A5237573DC00800EC2 /* ComposeViewController.swift */; };
+		0729D8A8237628F000800EC2 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 0729D8A7237628F000800EC2 /* README.md */; };
 		076B943F236D08A6003AE1ED /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076B943E236D08A6003AE1ED /* LoginViewController.swift */; };
 		076B9443236D1F30003AE1ED /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 076B9442236D1F30003AE1ED /* HomeTableViewController.swift */; };
 		37D29B8621F90E3400984A88 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37D29B8521F90E3400984A88 /* Assets.xcassets */; };
@@ -17,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0729D8A5237573DC00800EC2 /* ComposeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
+		0729D8A7237628F000800EC2 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		076B943E236D08A6003AE1ED /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		076B9442236D1F30003AE1ED /* HomeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
 		37D29B8521F90E3400984A88 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -54,6 +58,7 @@
 			isa = PBXGroup;
 			children = (
 				076B9442236D1F30003AE1ED /* HomeTableViewController.swift */,
+				0729D8A5237573DC00800EC2 /* ComposeViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -70,6 +75,7 @@
 		6EBCF51921DF07FC00451C03 = {
 			isa = PBXGroup;
 			children = (
+				0729D8A7237628F000800EC2 /* README.md */,
 				6EBCF52421DF07FC00451C03 /* Twitter */,
 				6EBCF52321DF07FC00451C03 /* Products */,
 				6BFB9ED923EC02A96AB79DEE /* Pods */,
@@ -168,6 +174,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0729D8A8237628F000800EC2 /* README.md in Resources */,
 				6EBCF54E21E71F9400451C03 /* Launch Screen.storyboard in Resources */,
 				37D29B8621F90E3400984A88 /* Assets.xcassets in Resources */,
 			);
@@ -218,6 +225,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0729D8A6237573DC00800EC2 /* ComposeViewController.swift in Sources */,
 				076B9443236D1F30003AE1ED /* HomeTableViewController.swift in Sources */,
 				076B943F236D08A6003AE1ED /* LoginViewController.swift in Sources */,
 				6EBCF54421E047A500451C03 /* TwitterAPICaller.swift in Sources */,

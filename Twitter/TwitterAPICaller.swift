@@ -73,4 +73,22 @@ class TwitterAPICaller: BDBOAuth1SessionManager {
         })
     }
     
+    func favoriteTweet(tweetId: Int, success: @escaping ()->(), failure: @escaping (Error)->()){
+        let url = "https://api.twitter.com/1.1/favorites/create.json"
+        TwitterAPICaller.client?.post(url, parameters: ["id":tweetId], progress: nil, success: { (task, response) in
+            success()
+        }, failure: { (task, error) in
+            failure(error)
+        })
+    }
+    
+    func unfavoriteTweet(tweetId: Int, success: @escaping ()->(), failure: @escaping (Error)->()){
+        let url = "https://api.twitter.com/1.1/favorites/destroy.json"
+        TwitterAPICaller.client?.post(url, parameters: ["id":tweetId], progress: nil, success: { (task, response) in
+            success()
+        }, failure: { (task, error) in
+            failure(error)
+        })
+    }
+    
 }

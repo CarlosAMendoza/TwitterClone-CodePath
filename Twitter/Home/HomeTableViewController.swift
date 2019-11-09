@@ -29,6 +29,8 @@ class HomeTableViewController: UITableViewController, UIAdaptivePresentationCont
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.allowsSelection = false
+        
         self.title = "Home"
         self.navigationItem.leftBarButtonItem = logoutButton
         logoutButton.action = #selector(logout)
@@ -121,6 +123,28 @@ class HomeTableViewController: UITableViewController, UIAdaptivePresentationCont
             cell.profilePic.image = UIImage(data: imageData)
         }
         
+        if let favorited = tweet[indexPath.row]["favorited"] as? Bool {
+            cell.favorited = favorited
+        }
+        
+        cell.favoriteTweetAction = { (cell) in
+            let id = self.tweet[indexPath.row]["id"] as! Int
+            if cell.favorited {
+                TwitterAPICaller.client?.unfavoriteTweet(tweetId: id, success: {
+                    cell.favorited = false
+                    self.loadTweet()
+                }, failure: { (error) in
+                    print(error)
+                })
+            } else {
+                TwitterAPICaller.client?.favoriteTweet(tweetId: id, success: {
+                    cell.favorited = true
+                    self.loadTweet()
+                }, failure: { (error) in
+                    print(error)
+                })
+            }
+        }
         
     
         return cell
@@ -200,9 +224,31 @@ class TweetCell: UITableViewCell {
         return tweetText
     }()
     
+    let likeButton: UIButton = {
+        let likeButton = UIButton()
+        likeButton.translatesAutoresizingMaskIntoConstraints = false
+        likeButton.setImage(#imageLiteral(resourceName: "favor-icon"), for: .normal)
+        return likeButton
+    }()
+    
+    let retweetButton: UIButton = {
+        let retweetButton = UIButton()
+        retweetButton.translatesAutoresizingMaskIntoConstraints = false
+        retweetButton.setImage(#imageLiteral(resourceName: "retweet-icon"), for: .normal)
+        return retweetButton
+    }()
+    
+    var favoriteTweetAction: ((TweetCell) ->Void)?
+    
+    @objc func invokeFavoriteTweet(_ sender: Any){
+        favoriteTweetAction?(self)
+    }
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()
+        
+        likeButton.addTarget(self, action: #selector(invokeFavoriteTweet), for: .touchUpInside)
         
     }
     
@@ -210,6 +256,8 @@ class TweetCell: UITableViewCell {
         contentView.addSubview(profilePic)
         contentView.addSubview(author)
         contentView.addSubview(tweetText)
+        contentView.addSubview(likeButton)
+        contentView.addSubview(retweetButton)
         
         NSLayoutConstraint.activate([
             profilePic.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 15),
@@ -220,14 +268,31 @@ class TweetCell: UITableViewCell {
             tweetText.topAnchor.constraint(equalTo: author.bottomAnchor, constant: 10),
             tweetText.leftAnchor.constraint(equalTo: profilePic.rightAnchor, constant: 10),
             tweetText.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -15),
-            tweetText.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
+//            tweetText.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
             profilePic.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 1/8)
+        ])
+        
+        NSLayoutConstraint.activate([
+            likeButton.topAnchor.constraint(equalTo: tweetText.bottomAnchor),
+            likeButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
+            likeButton.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10),
+            retweetButton.topAnchor.constraint(equalTo: likeButton.topAnchor),
+            retweetButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
+            retweetButton.rightAnchor.constraint(equalTo: likeButton.leftAnchor, constant: -10)
         ])
         
         layoutIfNeeded()
     }
     
-    
+    var favorited:Bool = false {
+        didSet{
+            if favorited {
+                likeButton.setImage(#imageLiteral(resourceName: "favor-icon-red"), for: .normal)
+            } else {
+                likeButton.setImage(#imageLiteral(resourceName: "favor-icon"), for: .normal)
+            }
+        }
+    }
     
     override func layoutSubviews() {
         super.layoutSubviews()

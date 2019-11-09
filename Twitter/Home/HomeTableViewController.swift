@@ -127,6 +127,10 @@ class HomeTableViewController: UITableViewController, UIAdaptivePresentationCont
             cell.favorited = favorited
         }
         
+        if let retweeted = tweet[indexPath.row]["retweeted"] as? Bool {
+            cell.retweeted = retweeted
+        }
+        
         cell.favoriteTweetAction = { (cell) in
             let id = self.tweet[indexPath.row]["id"] as! Int
             if cell.favorited {
@@ -139,6 +143,18 @@ class HomeTableViewController: UITableViewController, UIAdaptivePresentationCont
             } else {
                 TwitterAPICaller.client?.favoriteTweet(tweetId: id, success: {
                     cell.favorited = true
+                    self.loadTweet()
+                }, failure: { (error) in
+                    print(error)
+                })
+            }
+        }
+        
+        cell.retweetedAction = { (cell) in
+            let id = self.tweet[indexPath.row]["id"] as! Int
+            if !cell.retweeted {
+                TwitterAPICaller.client?.retweet(tweetId: id, success: {
+                    cell.retweeted = true
                     self.loadTweet()
                 }, failure: { (error) in
                     print(error)
@@ -239,9 +255,14 @@ class TweetCell: UITableViewCell {
     }()
     
     var favoriteTweetAction: ((TweetCell) ->Void)?
+    var retweetedAction: ((TweetCell)->Void)?
     
     @objc func invokeFavoriteTweet(_ sender: Any){
         favoriteTweetAction?(self)
+    }
+    
+    @objc func invokeRetweet(_ sender:Any){
+        retweetedAction?(self)
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -249,7 +270,7 @@ class TweetCell: UITableViewCell {
         setupUI()
         
         likeButton.addTarget(self, action: #selector(invokeFavoriteTweet), for: .touchUpInside)
-        
+        retweetButton.addTarget(self, action: #selector(invokeRetweet), for: .touchUpInside)
     }
     
     private func setupUI(){
@@ -294,6 +315,15 @@ class TweetCell: UITableViewCell {
         }
     }
     
+    var retweeted:Bool = false {
+        didSet{
+            if retweeted {
+                retweetButton.setImage(#imageLiteral(resourceName: "retweet-icon-green"), for: .normal)
+            } else {
+                retweetButton.setImage(#imageLiteral(resourceName: "retweet-icon"), for: .normal)
+            }
+        }
+    }
     override func layoutSubviews() {
         super.layoutSubviews()
         profilePic.layer.cornerRadius = profilePic.frame.size.height/2
